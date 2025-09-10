@@ -17,6 +17,17 @@
 
 </div>
 
+Core System :
+- Laravel 11.45.1
+- PHP 8.3.24
+- Tailwind CSS 3.1
+- Alpine.js 3.4
+- L5-Swagger
+- Laravel Sanctum 
+- Spatie Laravel Permission
+- Laravel Tinker
+
+
 ## 📋 Deskripsi
 
 Sistem Informasi Dinas Perumahan, Kawasan Permukiman dan Pertanahan adalah platform web yang dirancang untuk:
