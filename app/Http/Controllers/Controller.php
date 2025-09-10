@@ -14,23 +14,8 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  *
  * @OA\Server(
- *     url="http://localhost:8000",
- *     description="Development Server (Laravel Artisan Serve)"
- * )
- *
- * @OA\Server(
- *     url="http://dinas-perkim.test",
- *     description="Local Development Server (Laragon Virtual Host)"
- * )
- *
- * @OA\Server(
- *     url="https://api.dinasperkim.go.id",
- *     description="Production Server (Example)"
- * )
- *
- * @OA\Server(
- *     url="https://staging.dinasperkim.go.id",
- *     description="Staging Server (Example)"
+ *     url=L5_SWAGGER_CONST_HOST,
+ *     description="API Server"
  * )
  *
  * @OA\SecurityScheme(

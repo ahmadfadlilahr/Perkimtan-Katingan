@@ -18,22 +18,32 @@ class CorsMiddleware
         $response = $next($request);
 
         // Get allowed origins
-        $allowedOrigins = [
+        $allowedOrigins = array_filter([
+            // Development domains
             'http://localhost:8000',
             'http://dinas-perkim.test',
             'http://127.0.0.1:8000',
             'http://localhost',
-            'https://dinasperkim.go.id', // Production example
-            'https://api.dinasperkim.go.id', // Production API example
-        ];
+            'http://localhost:3000', // React/Vue development
+
+            // Production domains (set via environment variables)
+            env('CORS_ALLOWED_ORIGIN_1'),
+            env('CORS_ALLOWED_ORIGIN_2'),
+            // Add more production domains as needed
+        ]);
 
         $origin = $request->headers->get('Origin');
 
-        // In local environment, be more permissive
-        if (app()->environment('local')) {
-            $response->headers->set('Access-Control-Allow-Origin', '*');
-        } elseif (in_array($origin, $allowedOrigins)) {
+        // Handle CORS origin properly (never use * with credentials)
+        if ($origin && in_array($origin, $allowedOrigins)) {
             $response->headers->set('Access-Control-Allow-Origin', $origin);
+        } elseif (app()->environment('local') && $origin) {
+            // In local environment, allow the specific origin (not wildcard)
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
+        } elseif (app()->environment('local') && !$origin) {
+            // For same-origin requests without Origin header, don't set CORS headers
+            // This prevents conflicts with credentials
+            return $response;
         }
 
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
@@ -43,12 +53,25 @@ class CorsMiddleware
 
         // Handle preflight requests
         if ($request->isMethod('OPTIONS')) {
-            return response('', 200)
-                ->header('Access-Control-Allow-Origin', app()->environment('local') ? '*' : ($origin ?: '*'))
+            $responseOrigin = null;
+
+            if ($origin && in_array($origin, $allowedOrigins)) {
+                $responseOrigin = $origin;
+            } elseif (app()->environment('local') && $origin) {
+                $responseOrigin = $origin;
+            }
+
+            $optionsResponse = response('', 200)
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH')
                 ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, X-CSRF-TOKEN')
-                ->header('Access-Control-Allow-Credentials', 'true')
                 ->header('Access-Control-Max-Age', '86400');
+
+            if ($responseOrigin) {
+                $optionsResponse->header('Access-Control-Allow-Origin', $responseOrigin);
+                $optionsResponse->header('Access-Control-Allow-Credentials', 'true');
+            }
+
+            return $optionsResponse;
         }
 
         return $response;

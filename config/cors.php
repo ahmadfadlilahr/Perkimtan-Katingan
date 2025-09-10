@@ -19,12 +19,21 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
+    'allowed_origins' => array_filter([
+        // Development domains
         'http://localhost:8000',
         'http://dinas-perkim.test',
         'http://127.0.0.1:8000',
         'http://localhost',
-    ],
+        'http://localhost:3000', // React/Vue development
+
+        // Production domains (uncomment when deploying)
+        env('CORS_ALLOWED_ORIGIN_1'), // Set in production .env
+        env('CORS_ALLOWED_ORIGIN_2'), // Set in production .env
+        // 'https://dinasperkim.katingankab.go.id',
+        // 'https://www.dinasperkim.katingankab.go.id',
+        // 'https://api.dinasperkim.katingankab.go.id',
+    ]),
 
     'allowed_origins_patterns' => [],
 

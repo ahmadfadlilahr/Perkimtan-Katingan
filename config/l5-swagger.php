@@ -8,6 +8,12 @@ return [
                 'title' => 'Dinas Perkim API Documentation',
                 'version' => '1.0.0',
                 'description' => 'RESTful API untuk sistem manajemen Dinas Perkim dengan Laravel Sanctum authentication',
+            ],
+            'servers' => [
+                [
+                    'url' => env('L5_SWAGGER_CONST_HOST', config('app.url')),
+                    'description' => 'API Server'
+                ]
             ],            'routes' => [
                 /*
                  * Route for accessing api documentation interface
