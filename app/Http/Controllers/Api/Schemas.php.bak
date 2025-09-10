@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+/**
+ * @OA\Schema(
+ *     schema="Berita",
+ *     type="object",
+ *     title="Berita",
+ *     description="Model Berita",
+ *     @OA\Property(property="id", type="integer", description="ID berita"),
+ *     @OA\Property(property="judul", type="string", description="Judul berita"),
+ *     @OA\Property(property="slug", type="string", description="Slug berita untuk URL"),
+ *     @OA\Property(property="penulis", type="string", description="Nama penulis"),
+ *     @OA\Property(property="isi", type="string", description="Konten berita"),
+ *     @OA\Property(property="excerpt", type="string", description="Excerpt berita"),
+ *     @OA\Property(property="gambar", type="string", nullable=true, description="Nama file gambar"),
+ *     @OA\Property(property="image_url", type="string", nullable=true, description="URL lengkap gambar"),
+ *     @OA\Property(property="status", type="string", enum={"published", "draft"}, description="Status publikasi"),
+ *     @OA\Property(property="published_at", type="string", format="date-time", nullable=true, description="Tanggal publikasi"),
+ *     @OA\Property(property="created_at", type="string", format="date-time", description="Tanggal dibuat"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", description="Tanggal diupdate")
+ * )
+ *
+ * @OA\Schema(
+ *     schema="ApiResponse",
+ *     type="object",
+ *     title="API Response",
+ *     description="Standard API Response format",
+ *     @OA\Property(property="success", type="boolean", description="Status response"),
+ *     @OA\Property(property="message", type="string", description="Response message"),
+ *     @OA\Property(property="data", description="Response data")
+ * )
+ *
+ * @OA\Schema(
+ *     schema="ValidationError",
+ *     type="object",
+ *     title="Validation Error",
+ *     description="Validation error response",
+ *     @OA\Property(property="success", type="boolean", example=false),
+ *     @OA\Property(property="message", type="string", example="Validation error"),
+ *     @OA\Property(
+ *         property="errors",
+ *         type="object",
+ *         description="Validation errors",
+ *         @OA\AdditionalProperties(
+ *             type="array",
+ *             @OA\Items(type="string")
+ *         )
+ *     )
+ * )
+ *
+ * @OA\Schema(
+ *     schema="PaginationMeta",
+ *     type="object",
+ *     title="Pagination Meta",
+ *     description="Pagination metadata",
+ *     @OA\Property(property="current_page", type="integer", description="Current page number"),
+ *     @OA\Property(property="last_page", type="integer", description="Last page number"),
+ *     @OA\Property(property="per_page", type="integer", description="Items per page"),
+ *     @OA\Property(property="total", type="integer", description="Total items"),
+ *     @OA\Property(property="from", type="integer", nullable=true, description="First item number"),
+ *     @OA\Property(property="to", type="integer", nullable=true, description="Last item number")
+ * )
+ */
+class Schemas
+{
+    // This class is only used for OpenAPI schema definitions
+}

@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "dinas-perkim-api",
+		"name": "Dinas Perkim API Collection",
+		"description": "Collection untuk testing API endpoints Dinas Perkim",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "api_token",
+			"value": "YOUR_TOKEN_HERE",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Berita",
+			"item": [
+				{
+					"name": "Get All Berita",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/berita",
+							"host": ["{{base_url}}"],
+							"path": ["berita"]
+						}
+					}
+				},
+				{
+					"name": "Get Berita by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/berita/1",
+							"host": ["{{base_url}}"],
+							"path": ["berita", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Berita",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judul",
+									"value": "Test Berita dari API",
+									"type": "text"
+								},
+								{
+									"key": "konten",
+									"value": "Ini adalah konten test berita yang dibuat melalui API",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "published",
+									"type": "text"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/berita",
+							"host": ["{{base_url}}"],
+							"path": ["berita"]
+						}
+					}
+				},
+				{
+					"name": "Update Berita",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"judul\": \"Berita Updated via API\",\n    \"konten\": \"Konten yang sudah diupdate\",\n    \"status\": \"published\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/berita/1",
+							"host": ["{{base_url}}"],
+							"path": ["berita", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Berita",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/berita/1",
+							"host": ["{{base_url}}"],
+							"path": ["berita", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": ["{{base_url}}"],
+							"path": ["login"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
