@@ -24,7 +24,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <p class="text-lg leading-relaxed text-gray-700 font-medium">
+                            <p class="text-lg leading-relaxed text-gray-700 font-medium break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">
                                 "{{ $visi->content }}"
                             </p>
                         </x-slot>
@@ -69,7 +69,7 @@
                     @if($misiItems->count() > 0)
                         <ul class="space-y-3 text-gray-700 list-disc pl-6">
                             @foreach($misiItems as $misi)
-                                <li>{{ $misi->content }}</li>
+                                <li class="break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">{{ $misi->content }}</li>
                             @endforeach
                         </ul>
                     @else

@@ -197,7 +197,7 @@
                                         <div class="text-sm font-medium text-gray-900">{{ $item->title }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 max-w-xs truncate" title="{{ strip_tags($item->content) }}">
+                                        <div class="text-sm text-gray-900 max-w-xs break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;" title="{{ strip_tags($item->content) }}">
                                             {!! Str::limit(strip_tags($item->content), 100) !!}
                                         </div>
                                     </td>
@@ -297,7 +297,7 @@
                                     </div>
                                 </div>
 
-                                <p class="text-sm text-gray-600 mb-3">
+                                <p class="text-sm text-gray-600 mb-3 break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">
                                     {!! Str::limit(strip_tags($item->content), 120) !!}
                                 </p>
 

@@ -345,7 +345,7 @@
                                             <div class="flex text-sm text-gray-600">
                                                 <label for="foto" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Upload foto baru</span>
-                                                    <input id="foto" name="foto" type="file" class="sr-only" accept="image/*">
+                                                    <input id="foto" name="foto" type="file" class="sr-only" accept="image/*" onchange="previewImage(event)">
                                                 </label>
                                                 <p class="pl-1">atau drag and drop</p>
                                             </div>
@@ -361,6 +361,13 @@
                                         Kosongkan jika tidak ingin mengganti foto yang sudah ada
                                     </div>
                                     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+
+                                    {{-- New Photo Preview --}}
+                                    <div class="mt-4">
+                                        <img id="imagePreview"
+                                             class="hidden w-full max-w-md h-48 object-cover rounded-lg shadow-sm border border-gray-200 mt-4"
+                                             alt="Preview foto baru">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -387,4 +394,25 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    preview.classList.add('block');
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.classList.remove('block');
+                preview.classList.add('hidden');
+                preview.src = '';
+            }
+        }
+    </script>
 </x-app-layout>

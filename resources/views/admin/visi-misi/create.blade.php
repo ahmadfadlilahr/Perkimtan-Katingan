@@ -72,8 +72,9 @@
                     <label for="content" class="block text-sm font-medium text-gray-700 mb-2">
                         Konten <span class="text-red-500">*</span>
                     </label>
-                    <textarea id="content" name="content" rows="4" required
-                              class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200 {{ $errors->has('content') ? 'border-red-500' : 'border-gray-300' }}"
+                    <textarea id="content" name="content" rows="6" required
+                              class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200 resize-vertical break-words whitespace-pre-wrap {{ $errors->has('content') ? 'border-red-500' : 'border-gray-300' }}"
+                              style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; white-space: pre-wrap;"
                               placeholder="Masukkan konten {{ strtolower($types[$type] ?? $type) }}">{{ old('content') }}</textarea>
                     @error('content')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -179,7 +180,7 @@
                                 </svg>
                             </div>
                             <h3 class="text-xl font-bold text-indigo-900 mb-4">Visi</h3>
-                            <p class="text-lg leading-relaxed text-gray-700 font-medium">"${content || 'Konten visi...'}"</p>
+                            <p class="text-lg leading-relaxed text-gray-700 font-medium break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">"${content || 'Konten visi...'}"</p>
                         </div>
                     </div>
                 `;
@@ -193,9 +194,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 713.138-3.138z"/>
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-green-900 mb-4">Misi</h3>
+                            <h3 class="text-2xl font-bold text-gray-900">Misi</h3>
+                        </div>
+                        <div class="prose prose-gray max-w-none">
+                            <p class="text-gray-700 break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">${orderNumber}. ${content || 'Konten misi...'}</p>
                             <div class="text-left">
-                                <p class="text-gray-700">${orderNumber}. ${content || 'Konten misi...'}</p>
+                                <p class="text-gray-700 break-words whitespace-pre-wrap" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">${orderNumber}. ${content || 'Konten misi...'}</p>
                             </div>
                         </div>
                     </div>

@@ -29,6 +29,16 @@ class VisiMisiController extends Controller
         $allVisiMisiItems = $this->visiMisiService->getAll(false); // Ambil semua data untuk counting
         $types = VisiMisi::getTypes();
 
+        // Debug: Log the counts
+        logger()->debug('VisiMisi Debug', [
+            'total_items' => $allVisiMisiItems->count(),
+            'visi_count' => $allVisiMisiItems->where('type', 'visi')->count(),
+            'misi_count' => $allVisiMisiItems->where('type', 'misi')->count(),
+            'current_type' => $type,
+            'current_items' => $visiMisiItems->count(),
+            'all_items_ids' => $allVisiMisiItems->pluck('id', 'type')->toArray()
+        ]);
+
         return view('admin.visi-misi.index', compact('visiMisiItems', 'allVisiMisiItems', 'types', 'type'));
     }
 
@@ -65,7 +75,7 @@ class VisiMisiController extends Controller
             $this->visiMisiService->create($validated);
 
             return redirect()
-                ->route('admin.visi-misi.index', ['type' => $validated['type']])
+                ->route('dashboard.visi-misi.index', ['type' => $validated['type']])
                 ->with('success', 'Item berhasil ditambahkan.');
         } catch (\Exception $e) {
             return back()
@@ -114,7 +124,7 @@ class VisiMisiController extends Controller
             $this->visiMisiService->update($visiMisi, $validated);
 
             return redirect()
-                ->route('admin.visi-misi.index', ['type' => $validated['type']])
+                ->route('dashboard.visi-misi.index', ['type' => $validated['type']])
                 ->with('success', 'Item berhasil diperbarui.');
         } catch (\Exception $e) {
             return back()
@@ -133,7 +143,7 @@ class VisiMisiController extends Controller
             $this->visiMisiService->delete($visiMisi);
 
             return redirect()
-                ->route('admin.visi-misi.index', ['type' => $type])
+                ->route('dashboard.visi-misi.index', ['type' => $type])
                 ->with('success', 'Item berhasil dihapus.');
         } catch (\Exception $e) {
             return back()
