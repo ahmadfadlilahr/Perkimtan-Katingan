@@ -27,12 +27,20 @@ return [
         'http://localhost',
         'http://localhost:3000', // React/Vue development
 
-        // Production domains (uncomment when deploying)
+        // Production domains
         env('CORS_ALLOWED_ORIGIN_1'), // Set in production .env
         env('CORS_ALLOWED_ORIGIN_2'), // Set in production .env
-        // 'https://dinasperkim.katingankab.go.id',
-        // 'https://www.dinasperkim.katingankab.go.id',
-        // 'https://api.dinasperkim.katingankab.go.id',
+
+        // Correct production domains
+        'https://perkimtan.katingankab.go.id',
+        'https://www.perkimtan.katingankab.go.id',
+        'http://perkimtan.katingankab.go.id',
+        'http://www.perkimtan.katingankab.go.id',
+
+        // Additional domains
+        'https://dinasperkim.katingankab.go.id',
+        'https://www.dinasperkim.katingankab.go.id',
+        'https://api.dinasperkim.katingankab.go.id',
     ]),
 
     'allowed_origins_patterns' => [],

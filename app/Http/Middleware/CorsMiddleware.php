@@ -29,7 +29,17 @@ class CorsMiddleware
             // Production domains (set via environment variables)
             env('CORS_ALLOWED_ORIGIN_1'),
             env('CORS_ALLOWED_ORIGIN_2'),
-            // Add more production domains as needed
+
+            // Correct production domains
+            'https://perkimtan.katingankab.go.id',
+            'https://www.perkimtan.katingankab.go.id',
+            'http://perkimtan.katingankab.go.id',
+            'http://www.perkimtan.katingankab.go.id',
+
+            // Additional domains
+            'https://dinasperkim.katingankab.go.id',
+            'https://www.dinasperkim.katingankab.go.id',
+            'https://api.dinasperkim.katingankab.go.id',
         ]);
 
         $origin = $request->headers->get('Origin');

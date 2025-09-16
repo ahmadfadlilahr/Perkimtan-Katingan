@@ -279,9 +279,6 @@
                     this.style.width = '100%';
                     this.style.height = '100%';
                 }
-
-                // Log untuk debugging (bisa dihapus di production)
-                console.log(`Image: ${this.src.split('/').pop()}, Img Ratio: ${imgAspectRatio.toFixed(2)}, Slide Ratio: ${slideAspectRatio.toFixed(2)}, Difference: ${aspectDifference.toFixed(2)}, Mode: ${this.style.objectFit}`);
             });
 
             // Trigger load event jika gambar sudah ter-cache
