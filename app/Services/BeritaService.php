@@ -6,6 +6,7 @@ use App\Models\Berita;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class BeritaService
@@ -15,7 +16,7 @@ class BeritaService
      */
     public function getAllBerita(array $filters = [], int $perPage = 10)
     {
-        $query = Berita::latest();
+        $query = Berita::with('user')->latest();
 
         // Filter by status
         if (isset($filters['status'])) {
@@ -27,7 +28,9 @@ class BeritaService
             $searchTerm = $filters['search'];
             $query->where(function($q) use ($searchTerm) {
                 $q->where('judul', 'LIKE', '%' . $searchTerm . '%')
-                  ->orWhere('penulis', 'LIKE', '%' . $searchTerm . '%')
+                  ->orWhereHas('user', function($query) use ($searchTerm) {
+                      $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+                  })
                   ->orWhere('isi', 'LIKE', '%' . $searchTerm . '%');
             });
         }
@@ -40,7 +43,7 @@ class BeritaService
      */
     public function getBeritaBySlug(string $slug, bool $publishedOnly = true)
     {
-        $query = Berita::where('slug', $slug);
+        $query = Berita::with('user')->where('slug', $slug);
 
         if ($publishedOnly) {
             $query->where('status', 'published');
@@ -77,7 +80,7 @@ class BeritaService
         $beritaData = [
             'judul' => $data['judul'],
             'slug' => Str::slug($data['judul']),
-            'penulis' => $data['penulis'],
+            'user_id' => Auth::id(),
             'isi' => $data['isi'],
             'gambar' => $imageName,
             'status' => $data['status'],
@@ -96,7 +99,6 @@ class BeritaService
         $updateData = [
             'judul' => $data['judul'],
             'slug' => Str::slug($data['judul']),
-            'penulis' => $data['penulis'],
             'isi' => $data['isi'],
             'status' => $data['status'],
             'published_at' => $data['status'] === 'published' ? now() : null,
@@ -140,7 +142,7 @@ class BeritaService
      */
     public function getPublishedBerita(int $perPage = 10)
     {
-        return Berita::where('status', 'published')
+        return Berita::with('user')->where('status', 'published')
             ->latest('published_at')
             ->paginate($perPage);
     }
@@ -150,10 +152,12 @@ class BeritaService
      */
     public function searchPublishedBerita(string $search, int $perPage = 10)
     {
-        return Berita::where('status', 'published')
+        return Berita::with('user')->where('status', 'published')
             ->where(function($query) use ($search) {
                 $query->where('judul', 'LIKE', '%' . $search . '%')
-                      ->orWhere('penulis', 'LIKE', '%' . $search . '%')
+                      ->orWhereHas('user', function($q) use ($search) {
+                          $q->where('name', 'LIKE', '%' . $search . '%');
+                      })
                       ->orWhere('isi', 'LIKE', '%' . $search . '%');
             })
             ->latest('published_at')

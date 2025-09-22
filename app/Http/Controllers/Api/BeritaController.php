@@ -167,10 +167,8 @@ class BeritaController extends Controller
                 ], 401);
             }
 
-            // Use authenticated user as author if not provided
-            if (!isset($validatedData['penulis'])) {
-                $validatedData['penulis'] = $user->name;
-            }
+            // Remove penulis from validated data since it will be automatically set by the service
+            unset($validatedData['penulis']);
 
             $berita = $this->beritaService->createBerita(
                 $validatedData,

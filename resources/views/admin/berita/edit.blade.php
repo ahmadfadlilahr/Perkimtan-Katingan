@@ -42,7 +42,7 @@
                                         Informasi Dasar
                                     </h3>
                                     <p class="text-sm text-gray-500">
-                                        Perbarui judul dan penulis artikel
+                                        Perbarui judul artikel
                                     </p>
                                 </div>
                             </div>
@@ -64,20 +64,7 @@
                                 <x-input-error :messages="$errors->get('judul')" class="mt-2" />
                             </div>
 
-                            <div>
-                                <x-input-label for="penulis" class="text-sm font-medium text-gray-700 mb-2">
-                                    Nama Penulis *
-                                </x-input-label>
-                                <x-text-input id="penulis"
-                                              class="block w-full"
-                                              type="text"
-                                              name="penulis"
-                                              :value="old('penulis', $berita->penulis)"
-                                              placeholder="Masukkan nama penulis..."
-                                              required />
-                                <p class="mt-1 text-xs text-gray-500">Nama akan ditampilkan sebagai byline artikel</p>
-                                <x-input-error :messages="$errors->get('penulis')" class="mt-2" />
-                            </div>
+
                         </div>
                     </div>
 

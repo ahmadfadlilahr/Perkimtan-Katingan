@@ -23,7 +23,6 @@ class StoreBeritaRequest extends FormRequest
     {
         return [
             'judul' => 'required|string|max:255',
-            'penulis' => 'nullable|string|max:255', // Made optional, will use authenticated user
             'isi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'status' => 'required|in:published,draft',
@@ -40,7 +39,6 @@ class StoreBeritaRequest extends FormRequest
         return [
             'judul.required' => 'Judul berita wajib diisi.',
             'judul.max' => 'Judul berita tidak boleh lebih dari 255 karakter.',
-            'penulis.max' => 'Nama penulis tidak boleh lebih dari 255 karakter.',
             'isi.required' => 'Konten berita wajib diisi.',
             'gambar.image' => 'File yang diupload harus berupa gambar.',
             'gambar.mimes' => 'Format gambar yang didukung: jpeg, png, jpg, webp.',

@@ -100,7 +100,7 @@
                                             </a>
                                         </h3>
                                         <p class="text-sm text-gray-600 mb-4">
-                                            Oleh: {{ $berita['penulis'] }}
+                                            Oleh: {{ $berita->penulis }}
                                         </p>
                                         <div class="flex items-center text-indigo-600 text-sm font-medium">
                                             Baca selengkapnya

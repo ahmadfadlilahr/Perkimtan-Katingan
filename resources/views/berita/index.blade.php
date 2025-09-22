@@ -85,7 +85,7 @@
                             <div class="relative mt-4 flex items-center gap-x-2">
                                 <div class="text-sm leading-6">
                                     <p class="font-semibold text-gray-900">
-                                        Oleh: {{ $berita['penulis'] }}
+                                        Oleh: {{ $berita->penulis }}
                                     </p>
                                 </div>
                             </div>

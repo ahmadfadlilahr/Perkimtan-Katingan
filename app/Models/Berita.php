@@ -18,7 +18,7 @@ class Berita extends Model
     protected $fillable = [
         'judul',
         'slug',
-        'penulis',
+        'user_id',
         'isi',
         'gambar',
         'status',
@@ -65,5 +65,21 @@ class Berita extends Model
     public function scopeDraft($query)
     {
         return $query->where('status', 'draft');
+    }
+
+    /**
+     * Get the user that created this berita
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the author name attribute for backward compatibility
+     */
+    public function getPenulisAttribute()
+    {
+        return $this->user ? $this->user->name : 'User Tidak Diketahui';
     }
 }

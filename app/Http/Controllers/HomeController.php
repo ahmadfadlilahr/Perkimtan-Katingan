@@ -18,7 +18,7 @@ class HomeController extends Controller
         $slides = Slide::where('status', 'published')->orderBy('urutan', 'asc')->get();
 
         // Ambil berita terbaru langsung dari model (tanpa HTTP request)
-        $beritaTerbaru = Berita::where('status', 'published')
+        $beritaTerbaru = Berita::with('user')->where('status', 'published')
             ->orderBy('created_at', 'desc')
             ->limit(3)
             ->get();
