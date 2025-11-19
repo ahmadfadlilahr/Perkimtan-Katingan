@@ -117,9 +117,9 @@
 
     {{-- Main Content --}}
     <div class="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
-        <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {{-- Content Column --}}
-            <div class="order-2 lg:order-1 lg:col-span-2 space-y-6 lg:space-y-8">
+            <div class="lg:col-span-2 space-y-6 lg:space-y-8">
                 {{-- Status Badges - Mobile Optimized --}}
                 <div class="flex flex-wrap gap-2 sm:gap-3">
                     {{-- Category Badge --}}
@@ -268,7 +268,7 @@
             </div>
 
             {{-- Sidebar --}}
-            <div class="order-1 lg:order-2 lg:col-span-1 space-y-4 sm:space-y-6">
+            <div class="lg:col-span-1 space-y-4 sm:space-y-6">
                 {{-- Status & Priority Card --}}
                 <div class="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
                     <h3 class="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">Informasi Agenda</h3>
@@ -279,9 +279,9 @@
                             <label class="text-sm font-medium text-gray-500 block mb-2">Status</label>
                             <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium
                                 @if($agenda->status == 'published') bg-green-50 text-green-700 border border-green-200
-                                @elseif($agenda->status == 'selesai') bg-blue-50 text-blue-700 border border-blue-200
-                                @elseif($agenda->status == 'dibatalkan') bg-red-50 text-red-700 border border-red-200
-                                @else bg-gray-50 text-gray-700 border border-gray-200 @endif">
+                                @elseif($agenda->status == 'selesai')
+                                @elseif($agenda->status == 'dibatalkan')
+                                @else @endif">
                                 @if($agenda->status == 'published')
                                     <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -311,9 +311,9 @@
                             <label class="text-sm font-medium text-gray-500 block mb-2">Prioritas</label>
                             <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium
                                 @if($agenda->prioritas == 'rendah') bg-gray-50 text-gray-700 border border-gray-200
-                                @elseif($agenda->prioritas == 'sedang') bg-yellow-50 text-yellow-700 border border-yellow-200
-                                @elseif($agenda->prioritas == 'tinggi') bg-orange-50 text-orange-700 border border-orange-200
-                                @else bg-red-50 text-red-700 border border-red-200 @endif">
+                                @elseif($agenda->prioritas == 'sedang')
+                                @elseif($agenda->prioritas == 'tinggi')
+                                @else @endif">
                                 @if($agenda->prioritas == 'rendah')
                                     <div class="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
                                 @elseif($agenda->prioritas == 'sedang')
