@@ -43,22 +43,22 @@
                         <x-contact.info-card
                             icon="phone"
                             title="Telepon"
-                            content="(0536) 3221-455"
-                            link="tel:+625363221455"
+                            content="0821-5108-5359"
+                            link="tel:+6282151085359"
                             class="transform hover:scale-105 transition-all duration-300" />
 
                         <x-contact.info-card
                             icon="email"
                             title="Email Resmi"
-                            content="dinasperkim@palangkaraya.go.id"
-                            link="mailto:dinasperkim@palangkaraya.go.id"
+                            content="perkimtankabkatingan@gmail.com"
+                            link="mailto:perkimtankabkatingan@gmail.com"
                             class="transform hover:scale-105 transition-all duration-300" />
 
                         <x-contact.info-card
                             icon="whatsapp"
                             title="WhatsApp"
-                            content="0812-3456-7890"
-                            link="https://wa.me/6281234567890"
+                            content="0821-5108-5359"
+                            link="https://wa.me/6282151085359"
                             class="transform hover:scale-105 transition-all duration-300" />
 
                         <x-contact.info-card
